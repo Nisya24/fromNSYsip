@@ -11,6 +11,7 @@ body {
     background-color: black;
 }
 
+/* Title */
 .title {
     text-align: center;
     color: white;
@@ -18,12 +19,14 @@ body {
     margin-top: 20px;
 }
 
+/* Container */
 .container {
     position: relative;
     height: 100vh;
     width: 100%;
 }
 
+/* Floating emojis */
 .floating {
     position: absolute;
     bottom: -50px;
@@ -31,6 +34,17 @@ body {
     animation: floatUp linear infinite;
 }
 
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    bottom: -10px;
+    animation: confettiFall linear infinite;
+}
+
+/* Animations */
 @keyframes floatUp {
     0% {
         transform: translateY(0);
@@ -42,6 +56,18 @@ body {
     }
 }
 
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Button styling */
 button[kind="primary"] {
     background-color: #ff4b4b;
     color: white;
@@ -64,6 +90,7 @@ if start:
 
     elements = ""
 
+    # Emoji floating
     for i in range(60):
         left = random.randint(0, 100)
         duration = random.randint(5, 12)
@@ -76,6 +103,20 @@ if start:
                     animation-duration:{duration}s; 
                     animation-delay:{delay}s;">
             {emoji}
+        </div>
+        """
+
+    # Confetti
+    for i in range(80):
+        left = random.randint(0, 100)
+        duration = random.randint(4, 10)
+        delay = random.randint(0, 5)
+
+        elements += f"""
+        <div class="confetti" 
+             style="left:{left}%; 
+                    animation-duration:{duration}s; 
+                    animation-delay:{delay}s;">
         </div>
         """
 
