@@ -4,7 +4,10 @@ import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Birthday Surprise 🎂", layout="wide")
 
-start = st.button("🎁 Start Surprise")
+# Center button
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    start = st.button("🎁 Start Surprise")
 
 if start:
     emojis = ["🎂","🎉","💛","🍫","✨","💖"]
@@ -46,7 +49,7 @@ if start:
     body {{
         margin: 0;
         overflow: hidden;
-        background: black;
+        background: white;
     }}
 
     .container {{
@@ -66,7 +69,7 @@ if start:
         position: absolute;
         width: 6px;
         height: 6px;
-        background: white;
+        background: black;
         bottom: -10px;
         animation: confettiFall linear infinite;
     }}
@@ -87,17 +90,34 @@ if start:
         width: 100%;
         text-align: center;
         font-size: 50px;
-        color: white;
+        color: black;
         font-weight: bold;
+        opacity: 0;
+        animation: fadeIn 2s ease forwards;
+        animation-delay: 1s;
+    }}
+
+    @keyframes fadeIn {{
+        from {{ opacity: 0; transform: translateY(20px); }}
+        to {{ opacity: 1; transform: translateY(0); }}
     }}
     </style>
     </head>
 
     <body>
+
+        <!-- 🎵 MUSIC (AUTOPLAY + LOOP) -->
+        <iframe width="0" height="0"
+        src="https://www.youtube.com/embed/3GwjfUFyY6M?autoplay=1&loop=1&playlist=3GwjfUFyY6M"
+        frameborder="0"
+        allow="autoplay">
+        </iframe>
+
         <div class="container">
             {elements}
             <div class="text">🎉 Happy Birthday Rifki 💖</div>
         </div>
+
     </body>
     </html>
     """
